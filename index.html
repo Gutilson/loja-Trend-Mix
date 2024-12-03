@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja De Vendas Login</title>
+    <!-- Custom CSS Link -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="box">
+        <div class="border-line"></div>
+        <form id="login-form">
+            <h2>Sign in</h2>
+            <div class="input-box">
+                <input type="text" id="username" required="required">
+                <span>Username</span>
+                <i></i>
+            </div>
+            <div class="input-box">
+                <input type="password" id="password" placeholder="Senha" required>
+                <span>Password</span>
+                <i></i>
+            </div>
+            <div class="imp-links">
+                <a href="#">Forget Password</a>
+                <a href="#">Sign up</a>
+            </div>
+            
+            <input type="submit" value="Login" class="btn">
+        </form>
+    </div>
+
+    <script>
+        // Função que redireciona para a próxima página após login
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Aqui você pode adicionar a lógica para validar o login
+            // Exemplo simples: se as credenciais forem "admin" e "1234"
+            if (username === 'admin' && password === '1234') {
+                // Redireciona para a página de dashboard
+                window.location.href = 'dashboard.html';
+            } else {
+                alert('Usuário ou senha incorretos!');
+            }
+        });
+    </script>
+</body>
+</html>

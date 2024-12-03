@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendas - Trend Mix</title>
+    <style>
+       body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #157580;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav ul {
+    background-color: #444;
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    padding: 1rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.product-item h3 {
+    margin: 1rem 0;
+}
+
+.product-item p {
+    margin: 0.5rem 0;
+    color: #555;
+}
+
+.product-item .price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.product-item button {
+    padding: 0.8rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.product-item button:hover {
+    background-color: #45a049;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Trend Mix - Loja de Acessórios</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="vendas.html">Vendas</a></li>
+            <li><a href="jogo.html">Contato</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h2>Produtos em Destaque</h2>
+        <div class="product-list">
+            <!-- Produto 1 -->
+            <div class="product-item">
+                <img src="C:\Users\Alice\Desktop\Axis\img\Switch P24.jpg" alt="Produto 1">
+                <h3>Switch P24</h3>
+                <p>001</p>
+                <p class="price">R$ 2,000.00</p>
+                <button onclick="addToCart('Produto 1', 2000.00)">Adicionar ao Carrinho</button>
+            </div>
+
+            <!-- Produto 2 -->
+            <div class="product-item">
+                <img src="C:\Users\Alice\Desktop\Axis\img\computador.jfif" alt="Produto 2">
+                <h3>Computador</h3>
+                <p>002</p>
+                <p class="price">R$ 300,000.00</p>
+                <button onclick="addToCart('Produto 2', 300000.00)">Adicionar ao Carrinho</button>
+            </div>
+
+            <!-- Produto 3 -->
+            <div class="product-item">
+                <img src="C:\Users\Alice\Desktop\Axis\img\Switch P24.jpg" alt="Produto 3">
+                <h3>Teclado Gamer</h3>
+                <p>003</p>
+                <p class="price">R$ 15,000.00</p>
+                <button onclick="addToCart('Produto 3', 15000.00)">Adicionar ao Carrinho</button>
+            </div>
+
+            <!-- Produto 4 -->
+            <div class="product-item">
+                <img src="C:\Users\Alice\Desktop\Axis\img\fonte.jfif" alt="Produto 4">
+                <h3>Fonte De Alimentação Gamer</h3>
+                <p>004</p>
+                <p class="price">R$ 200,000.00</p>
+                <button onclick="addToCart('Produto 4', 200000.00)">Adicionar ao Carrinho</button>
+            </div>
+
+            <!-- Produto 5 -->
+            <div class="product-item">
+                <img src="C:\Users\Alice\Desktop\Axis\img\Switch P24.jpg" alt="Produto 3">
+                <h3>Teclado Gamer</h3>
+                <p>005</p>
+                <p class="price">R$ 15,000.00</p>
+                <button onclick="addToCart('Produto 3', 15000.00)">Adicionar ao Carrinho</button>
+            </div>
+
+             <!-- Produto 6 -->
+             <div class="product-item">
+                <img src="C:\Users\Alice\Desktop\Axis\img\Switch P24.jpg" alt="Produto 3">
+                <h3>Teclado Gamer</h3>
+                <p>006</p>
+                <p class="price">R$ 15,000.00</p>
+                <button onclick="addToCart('Produto 3', 15000.00)">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+
+        <h2>Resumo do Carrinho</h2>
+        <div id="cart-summary">
+            <p>Produtos no carrinho: 0</p>
+            <p>Total: R$ 0,00</p>
+            <button onclick="checkout()">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function addToCart(productName, productPrice) {
+            cart.push({ name: productName, price: productPrice });
+            updateCartSummary();
+        }
+
+        function updateCartSummary() {
+            const cartSummary = document.getElementById('cart-summary');
+            const cartCount = cart.length;
+            const total = cart.reduce((acc, item) => acc + item.price, 0).toFixed(2);
+
+            cartSummary.innerHTML = `
+                <p>Produtos no carrinho: ${cartCount}</p>
+                <p>Total: R$ ${total}</p>
+                <button onclick="checkout()">Finalizar Compra</button>
+            `;
+        }
+
+        function checkout() {
+            if (cart.length > 0) {
+                alert('Obrigado pela sua compra!');
+                cart = [];
+                updateCartSummary();
+                window.location.href = 'formulario.html';
+            } else {
+                alert('Seu carrinho está vazio!');
+            }
+        }
+    </script>
+</body>
+</html>
